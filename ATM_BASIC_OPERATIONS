@@ -1,0 +1,84 @@
+import java.util.Scanner;
+ class Main {
+    public static void main(String[] args) {
+        char code;
+        System.out.println(" ~~~~~~~~~~~~ WELCOME TO BANK OF BARODA ~~~~~~~~~~~~ Branch : Nagari ");
+        int password=1243,checkpass;
+        int tcode;// transaction code
+        Scanner obj=new Scanner(System.in);
+//    System.out.println("ENTER YOUR PASSWORD");
+//    checkpass= obj.nextInt();
+        int balance=0;
+        int withdraw_amount;
+        int deposite;
+//        String minis []=new String[10];
+        String minis[]=new String[10];
+        int a;
+        int minist=0;
+        char yes='y';
+        char no='n';
+        minis[0]="YOUR LAST THREE TRANSACTIONS OR BELOW";
+        outer:
+        for (int loop =0; loop <= 10; loop++) {
+            System.out.println("ENTER YOUR PASSWORD :");
+            checkpass= obj.nextInt();
+            if (password == checkpass) {
+                   System.out.println(" HI JAMES GOSLING");
+                   System.out.println(" FOR WITHDRAW PRESS 1");
+                   System.out.println(" FOR DEPOSIT PRESS 2");
+                   System.out.println("FOR MINI STATEMENT PRESS 3");
+                tcode = obj.nextInt();
+                //withdrawal code
+                if (tcode == 1) {
+                    System.out.println("ENTER WITHDRAWAL AMOUNT");
+                    withdraw_amount = obj.nextInt();
+                    if (balance >= withdraw_amount) {
+                        System.out.println("PLEASE COLLECT YOUR CASH");
+                        System.out.println("WITHDRAWAL AMOUNT>" + withdraw_amount);
+                        balance = balance - withdraw_amount;
+                        System.out.println("BALANCE -->" + balance);
+                        minis[loop+1]="debited --->"+withdraw_amount;
+                    } else {
+                        System.out.println("INSUFFICIENT BALANCE");
+                        System.out.println("TOTAL BALANCE---->  "+balance);
+                    }
+                }
+                // doposite code
+                else if (tcode == 2) {
+                    {
+                        System.out.println("ENTER DEPOSIT AMOUNT :");
+                        deposite = obj.nextInt();
+                        balance = balance + deposite;
+                        System.out.println("DEPOSITED AMOUNT -->" + deposite);
+                        System.out.println("Balance  -->" + balance);
+                        minis[loop+1] = "credited --->" + deposite;
+                    }
+
+//                    ministattemant
+//                    minist=loop-;
+                }else if(tcode==3){
+//                    minist=loop-3;
+                    for( a=minist;a<=loop;a++){
+                        System.out.println(minis[a]);
+                    }
+                    System.out.println("YOUR BALANCE---->"+balance);
+                }else
+                {
+                    System.out.println("INVALID CODE");
+                }
+            } else {//INCORRECT PASSWORD
+                System.out.println("incorrect password");
+            }
+
+            System.out.println("YOU WANT TO CONTINUE THE TRANSACTION PRESS (y/n)");
+            code = obj.next().charAt(0);
+
+            if (code == yes) {
+                System.out.println("please wait");
+            } else if (code == no) {
+                break outer;
+            }
+        }
+        System.out.println("THANK YOU FOR VISITING BANK OF BARODA");
+    }
+}
